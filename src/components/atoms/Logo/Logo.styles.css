@@ -1,0 +1,16 @@
+.logo {
+  align-items: center;
+  background-color: rgb(242, 13, 13);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 4rem;
+}
+
+.logo__image {
+  height: 2.5rem;
+  width: 2.5rem;
+}

@@ -1,0 +1,32 @@
+.input-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.input-checkbox__checkbox {
+  appearance: none;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  transition: all 500ms ease;
+  width: 1rem;
+}
+
+.input-checkbox__checkbox:checked {
+  background-color: rgb(242, 13, 13);
+  background-image: url("/icons/check.svg");
+  background-position: center;
+  border: none;
+  color: rgb(242, 13, 13);
+}
+
+.input-checkbox__checkbox:disabled {
+  opacity: 0.5;
+  cursor: no-drop;
+}

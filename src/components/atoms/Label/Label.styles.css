@@ -1,0 +1,30 @@
+.label {
+  box-sizing: border-box;
+  color: rgb(203 213 225 / 0.7);
+  display: block;
+  font-family: "Lexend", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  margin-left: 0.25rem;
+  text-transform: uppercase;
+}
+
+.label__required {
+  color: #f20d0d;
+  margin-left: 4px;
+}
+
+.label--checkbox {
+  box-sizing: border-box;
+  color: rgb(203 213 225 / 0.6);
+  font-family: "Lexend", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  text-transform: none;
+  user-select: none;
+}

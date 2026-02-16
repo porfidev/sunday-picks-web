@@ -1,0 +1,38 @@
+.input-text {
+  margin-top: 1.5rem;
+}
+
+.input-text__group {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+}
+
+.input-text__icon-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding-left: 0.75rem;
+  pointer-events: none;
+}
+
+.input-text__toggle{
+  background: none;
+  border: 0;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-right: 0.75rem;
+}
+
+.input-text--password .input-text__field {
+  padding-right: 2.75rem;
+}
+

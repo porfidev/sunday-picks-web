@@ -1,0 +1,15 @@
+.brand-title {
+  color: #FFFFFF;
+  font-family: "Lexend", sans-serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 2rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.brand-title__highlight {
+  color: rgb(242, 13, 13);
+}

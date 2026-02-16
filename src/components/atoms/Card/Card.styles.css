@@ -1,0 +1,20 @@
+.card {
+  max-width: 420px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.card__inner {
+  backdrop-filter: blur(24px);
+  background-color: rgba(10, 19, 36, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(203, 213, 225, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 25px 50px -12px;
+  box-sizing: border-box;
+  color: rgb(241, 245, 249);
+  height: auto;
+  padding: 40px;
+  width: 372px;
+}
