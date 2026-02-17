@@ -1,0 +1,30 @@
+.error-message {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  min-height: 58px;
+  padding: 12px;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+}
+
+.error-message__icon {
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-top: 2px;
+  color: rgb(239, 68, 68);
+}
+
+.error-message__text {
+  font-family: "Lexend", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  color: rgb(239, 68, 68);
+}

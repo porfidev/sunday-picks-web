@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { authService, type AuthService } from '../services/auth.service.ts';
 
 export type LoginRequestValues = {
   email: string;
@@ -6,7 +7,7 @@ export type LoginRequestValues = {
   remember: boolean;
 };
 
-export function useLogin() {
+export function useLogin(service: AuthService = authService) {
   const [values, setValues] = useState<LoginRequestValues>({
     email: '',
     password: '',
@@ -15,16 +16,19 @@ export function useLogin() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const [error, setError] = useState<string | null>(null);
 
   const submit = async () => {
     setLoading(true);
-    console.log('ingresando a submit', loading);
+    setError(null); // antes de intentar login
     try {
-      await sleep(1000);
+      const result = await service.login(values);
+      console.log('result', result);
+      return result;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Error al iniciar sesión');
+      return null;
     } finally {
-      console.log('fin submit', loading);
       setLoading(false);
     }
   };
@@ -36,5 +40,6 @@ export function useLogin() {
     setShowPassword,
     loading,
     submit,
+    error,
   };
 }

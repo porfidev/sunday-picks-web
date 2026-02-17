@@ -6,6 +6,7 @@ import './LoginForm.styles.css';
 import { InputCheckbox, InputText } from '../../molecules';
 import { Button } from '../../atoms';
 import type { SubmitEventHandler } from 'react';
+import { ErrorMessage } from '../../atoms/ErrorMessage';
 
 export type LoginFormValues = {
   email: string;
@@ -20,6 +21,7 @@ type LoginFormProps = {
   onTogglePassword: () => void;
   onInputChange: (name: keyof LoginFormValues, value: string | boolean) => void;
   onSubmit: SubmitEventHandler<HTMLFormElement>;
+  error?: string | null;
 };
 
 export function LoginForm({
@@ -29,8 +31,8 @@ export function LoginForm({
   onTogglePassword,
   onInputChange,
   onSubmit,
+  error,
 }: LoginFormProps) {
-  console.log('loading', loading);
   return (
     <form className={'login-form'} onSubmit={onSubmit}>
       <InputText
@@ -57,12 +59,14 @@ export function LoginForm({
         onChange={(e) => onInputChange(e.target.name as keyof LoginFormValues, e.target.value)}
       />
       <InputCheckbox
-        id={'keepSession'}
+        id={'rememberSession'}
         label={'Mantener sesión activa'}
-        value={values.rememberSession}
+        checked={values.rememberSession === 'true'}
         disabled={loading}
-        onChange={(e) => onInputChange(e.target.name as keyof LoginFormValues, e.target.value)}
+        onChange={(e) => onInputChange(e.target.name as keyof LoginFormValues, e.target.checked.toString())}
       />
+
+      {error && <ErrorMessage error={`Error: ${error}`} />}
       <Button disabled={loading}>
         <span className={'button-text'}>{loading ? 'Ingresando...' : 'Ingresar'}</span>
       </Button>

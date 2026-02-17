@@ -8,10 +8,16 @@ type InputCheckboxProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
 };
 
-export function InputCheckbox({ label, id, required, ...props }: InputCheckboxProps) {
+export function InputCheckbox({ label, id, required, name, ...props }: InputCheckboxProps) {
   return (
     <div className={'input-checkbox'}>
-      <input id={id} type={'checkbox'} className={'input-checkbox__checkbox'} {...props} />
+      <input
+        id={id}
+        name={name || id}
+        type={'checkbox'}
+        className={'input-checkbox__checkbox'}
+        {...props}
+      />
       <Label htmlFor={id} required={required} variant={'checkbox'}>
         {label}
       </Label>

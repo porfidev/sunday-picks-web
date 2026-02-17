@@ -17,6 +17,7 @@ export function LoginPage() {
     showPassword,
     setValues,
     submit,
+    error,
   } = useLogin();
 
   const togglePassword = () => {
@@ -25,14 +26,18 @@ export function LoginPage() {
 
   const onSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    console.log('enviando');
-    await submit();
+    const loginResult = await submit();
+
+    if (!loginResult) {
+    }
   };
 
   const formValues = mapUseLoginToLoginForm(domainValues);
 
   const setInputValue = (name: keyof LoginFormValues, value: string | boolean) => {
     const newValues = { ...formValues, [name]: value };
+
+    console.log('value', name, value);
     setValues(mapLoginFormToUseLogin(newValues));
   };
 
@@ -51,6 +56,7 @@ export function LoginPage() {
           showPassword={showPassword}
           onInputChange={setInputValue}
           onTogglePassword={togglePassword}
+          error={error}
         />
       </Card>
     </AuthTemplate>

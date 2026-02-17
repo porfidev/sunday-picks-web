@@ -30,6 +30,7 @@
   top: 0;
   bottom: 0;
   padding-right: 0.75rem;
+  cursor: pointer;
 }
 
 .input-text--password .input-text__field {
