@@ -1,9 +1,12 @@
-import { AuthTemplate } from '../../templates';
+import { Link } from 'react-router-dom';
+import { MainTemplate } from '../../templates';
 
 export function HomePage() {
   return (
-    <AuthTemplate>
-      <section>Home page</section>
-    </AuthTemplate>
+    <MainTemplate>
+      <section style={{ width: '600px' }}>
+        <Link to={'/admin/teams'}>Administrar Equipos</Link>
+      </section>
+    </MainTemplate>
   );
 }

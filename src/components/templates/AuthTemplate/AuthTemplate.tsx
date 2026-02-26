@@ -7,12 +7,10 @@ type MainLayoutProps = {
 
 export function AuthTemplate({ children }: MainLayoutProps) {
   return (
-    <>
-      <div className={'main-layout'}>
-        <div className={'field-lines'}></div>
-        <div className={'hash-marks'}></div>
-        {children}
-      </div>
-    </>
+    <div className={'auth-template'}>
+      <div className={'auth-template__field-lines'}></div>
+      <div className={'auth-template__hash-marks'}></div>
+      {children}
+    </div>
   );
 }

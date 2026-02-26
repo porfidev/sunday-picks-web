@@ -1,0 +1,21 @@
+.line-spacer {
+  background-color: rgb(242 13 13);
+  border-radius: 9999px;
+  width: 12rem;
+  height: 0.25rem;
+  margin: 0.5rem auto;
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity, 1));
+  line-height: inherit;
+  font-family: 'Lexend', sans-serif;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}

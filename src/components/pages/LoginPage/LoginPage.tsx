@@ -8,8 +8,12 @@ import {
   mapUseLoginToLoginForm,
 } from '../../../features/auth/adapters/login.adapter.ts';
 import type { SubmitEventHandler } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../features/auth/hooks/useAuth.ts';
 
 export function LoginPage() {
+  const navigate = useNavigate();
+  const { setAuthData } = useAuth();
   const {
     values: domainValues,
     loading,
@@ -27,8 +31,9 @@ export function LoginPage() {
   const onSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const loginResult = await submit();
-
-    if (!loginResult) {
+    if (loginResult?.data) {
+      setAuthData(loginResult.data);
+      navigate('/home', { replace: true });
     }
   };
 
@@ -50,13 +55,13 @@ export function LoginPage() {
         </div>
 
         <LoginForm
-          loading={loading}
-          onSubmit={onSubmit}
-          values={formValues}
-          showPassword={showPassword}
-          onInputChange={setInputValue}
-          onTogglePassword={togglePassword}
           error={error}
+          loading={loading}
+          onInputChange={setInputValue}
+          onSubmit={onSubmit}
+          onTogglePassword={togglePassword}
+          showPassword={showPassword}
+          values={formValues}
         />
       </Card>
     </AuthTemplate>

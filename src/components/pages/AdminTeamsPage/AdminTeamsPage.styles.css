@@ -1,0 +1,14 @@
+.admin-teams-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-teams-page__card {
+  margin-top: 40px;
+  align-self: center;
+}
+
+.admin-teams-page__card-inner{
+  min-width: 600px;
+  background-color: rgb(30 41 59);
+}

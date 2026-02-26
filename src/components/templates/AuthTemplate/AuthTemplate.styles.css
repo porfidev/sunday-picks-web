@@ -1,4 +1,4 @@
-.main-layout {
+.auth-template {
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
@@ -11,7 +11,7 @@
   background-position: center;
 }
 
-.field-lines {
+.auth-template__field-lines {
   position: absolute;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
   pointer-events: none;
 }
 
-.hash-marks {
+.auth-template__hash-marks {
   position: absolute;
   top: 50%;
   left: 0;

@@ -7,6 +7,7 @@ type BaseProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   required?: boolean;
   id: string;
+  hasIcon?: boolean;
 };
 
 type PasswordProps = BaseProps & {
@@ -29,6 +30,7 @@ export function InputText({
   id,
   name,
   type,
+  hasIcon = true,
   onPressShowPassword,
   placeholder,
   shouldShow,
@@ -54,13 +56,16 @@ export function InputText({
         {label}
       </Label>
       <div className={'input-text__group'}>
-        <div className={'input-text__icon-wrapper'}>
-          <InputIcon type={type} />
-        </div>
+        {hasIcon && (
+          <div className={'input-text__icon-wrapper'}>
+            <InputIcon type={type} />
+          </div>
+        )}
         <InputField
           id={id}
           required={required}
           type={handleType(type, shouldShow)}
+          hasIcon={hasIcon}
           placeholder={placeholder}
           name={name || id}
           maxLength={maxLength}

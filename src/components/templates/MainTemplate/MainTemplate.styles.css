@@ -1,0 +1,12 @@
+.main-template {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-color: rgb(15 23 42);
+  /* background-image: radial-gradient(circle at 50% -20%, #1e293b 0%, #0a0e1a 100%); */
+}

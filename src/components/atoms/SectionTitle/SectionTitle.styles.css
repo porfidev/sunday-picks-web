@@ -1,0 +1,13 @@
+.section-title {
+  margin: 0;
+  font-size: 3rem;
+  font-family: "Lexend", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 1.5;
+  text-align: center;
+}
+

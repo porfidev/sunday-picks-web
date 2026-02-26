@@ -9,8 +9,17 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   id: string;
   required?: boolean;
   type: string;
+  hasIcon?: boolean;
 };
 
-export function InputField({ id, required, type, ...props }: InputFieldProps) {
-  return <input id={id} required={required} type={type} className={'input-field'} {...props} />;
+export function InputField({ id, required, type, hasIcon = true, ...props }: InputFieldProps) {
+  return (
+    <input
+      id={id}
+      required={required}
+      type={type}
+      className={`input-field ${!hasIcon ? 'input-field--no-icon' : ''}`.trim()}
+      {...props}
+    />
+  );
 }

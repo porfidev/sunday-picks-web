@@ -1,0 +1,122 @@
+.logo-uploader {
+  margin-top: 1.5rem;
+}
+
+.logo-uploader__dropzone {
+  align-items: center;
+  background-color: rgba(10, 19, 36, 0.5);
+  border: 2px dashed rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 270px;
+  padding: 1.75rem 1rem;
+  text-align: center;
+  transition: all 250ms ease;
+  width: 100%;
+}
+
+.logo-uploader__dropzone:hover {
+  border-color: rgba(148, 163, 184, 0.45);
+  background-color: rgba(10, 19, 36, 0.65);
+}
+
+.logo-uploader__dropzone--dragging {
+  border-color: rgba(242, 13, 13, 0.7);
+  background-color: rgba(242, 13, 13, 0.08);
+}
+
+.logo-uploader__dropzone--disabled {
+  opacity: 0.6;
+  cursor: no-drop;
+}
+
+.logo-uploader__input {
+  display: none;
+}
+
+.logo-uploader__icon {
+  align-items: center;
+  background-color: rgba(242, 13, 13, 0.12);
+  border-radius: 999px;
+  color: rgb(242, 13, 13);
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  width: 64px;
+}
+
+.logo-uploader__icon-svg {
+  height: 28px;
+  width: 28px;
+}
+
+.logo-uploader__title {
+  color: rgb(241, 245, 249);
+  font-family: "Lexend", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin: 0;
+}
+
+.logo-uploader__subtitle {
+  color: rgba(148, 163, 184, 0.95);
+  font-family: "Lexend", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.35rem;
+  margin: 0.5rem 0 0;
+}
+
+.logo-uploader__preview {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.logo-uploader__preview-image {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 10px;
+  display: block;
+  height: 96px;
+  margin: 0 auto;
+  object-fit: contain;
+  padding: 0.5rem;
+  width: 96px;
+}
+
+.logo-uploader__file-name {
+  color: rgba(203, 213, 225, 0.95);
+  font-family: "Lexend", sans-serif;
+  font-size: 0.85rem;
+  margin: 0.625rem 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logo-uploader__actions {
+  margin-top: 1rem;
+  min-width: 170px;
+}
+
+.logo-uploader__button {
+  background-color: rgba(71, 85, 105, 0.9);
+  margin-top: 0;
+  padding: 0.75rem 1.25rem;
+}
+
+.logo-uploader__button:hover {
+  background-color: rgba(100, 116, 139, 0.95);
+}
+
+.logo-uploader__error {
+  color: rgb(252, 165, 165);
+  font-family: "Lexend", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.25rem;
+  margin: 0.625rem 0 0;
+}

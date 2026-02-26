@@ -5,3 +5,4 @@ export * from './InputField';
 export * from './InputIcon';
 export * from './Label';
 export * from './Logo';
+export * from './Icon';

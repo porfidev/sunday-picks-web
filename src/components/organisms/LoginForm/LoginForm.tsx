@@ -15,23 +15,23 @@ export type LoginFormValues = {
 };
 
 type LoginFormProps = {
-  values: LoginFormValues;
+  error?: string | null;
   loading: boolean;
-  showPassword: boolean;
-  onTogglePassword: () => void;
   onInputChange: (name: keyof LoginFormValues, value: string | boolean) => void;
   onSubmit: SubmitEventHandler<HTMLFormElement>;
-  error?: string | null;
+  onTogglePassword: () => void;
+  showPassword: boolean;
+  values: LoginFormValues;
 };
 
 export function LoginForm({
-  values,
+  error,
   loading,
-  showPassword,
-  onTogglePassword,
   onInputChange,
   onSubmit,
-  error,
+  onTogglePassword,
+  showPassword,
+  values,
 }: LoginFormProps) {
   return (
     <form className={'login-form'} onSubmit={onSubmit}>
@@ -63,7 +63,9 @@ export function LoginForm({
         label={'Mantener sesión activa'}
         checked={values.rememberSession === 'true'}
         disabled={loading}
-        onChange={(e) => onInputChange(e.target.name as keyof LoginFormValues, e.target.checked.toString())}
+        onChange={(e) =>
+          onInputChange(e.target.name as keyof LoginFormValues, e.target.checked.toString())
+        }
       />
 
       {error && <ErrorMessage error={`Error: ${error}`} />}

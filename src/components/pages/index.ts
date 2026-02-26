@@ -1,3 +1,6 @@
 export * from './HomePage';
 export * from './AboutPage';
 export * from './LoginPage';
+export * from './AdminTeamsPage';
+export * from './AdminUsersPage';
+export * from './AdminSettingsPage';
