@@ -6,9 +6,30 @@ import type { RequestErrorResponse } from '../../../types/RequestErrorResponse.t
 
 export type TeamService = {
   create: (payload: CreateTeamRequestValues) => Promise<{ data: CreateTeamResponse }>;
+  getAll: () => Promise<{ data: { items: CreateTeamResponse[] } }>;
 };
 
 export const teamService: TeamService = {
+  async getAll() {
+    try {
+      const { data } = await http.get<{ items: CreateTeamResponse[] }>('/teams/', {
+        requiresAuth: true,
+      });
+
+      return { data };
+    } catch (error) {
+      if (isAxiosError<RequestErrorResponse>(error)) {
+        throw new Error(
+          error.response?.data?.message ??
+            error.response?.data?.error ??
+            'Error al obtener los equipos',
+        );
+      }
+
+      throw new Error('Error al obtener los equipos');
+    }
+  },
+
   async create(payload) {
     try {
       const formData = new FormData();

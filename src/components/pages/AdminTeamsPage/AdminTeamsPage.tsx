@@ -7,9 +7,12 @@ import './AdminTeamsPage.styles.css';
 import { CreateTeamForm, type CreateTeamFormValues } from '../../organisms/CreateTeamForm';
 import { useCreateTeam } from '../../../features/teams/hooks/useCreateTeam.ts';
 import { useState, type SubmitEventHandler } from 'react';
+import { ActiveTeamsPanel } from '../../organisms/ActiveTeamsPanel';
+import { useTeams } from '../../../features/teams/hooks/useTeams.ts';
 
 export function AdminTeamsPage() {
   const { values, loading, submit, error, setValues } = useCreateTeam();
+  const { teams, loading: loadingTeams, error: teamsError, refetch } = useTeams();
   const [formKey, setFormKey] = useState(0);
 
   const onSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
@@ -22,6 +25,7 @@ export function AdminTeamsPage() {
         logo: null,
       });
       setFormKey((prev) => prev + 1);
+      await refetch();
     }
   };
 
@@ -32,7 +36,7 @@ export function AdminTeamsPage() {
 
   return (
     <MainTemplate>
-      <section className={'admin-teams-page'}>
+      <div className={'admin-teams-page'}>
         <SectionTitle>Registro de Equipos</SectionTitle>
         <LineSpacer />
 
@@ -53,7 +57,11 @@ export function AdminTeamsPage() {
             values={values}
           />
         </Card>
-      </section>
+
+        <div className={'admin-teams-page__teams-list'}>
+          <ActiveTeamsPanel teams={teams} loading={loadingTeams} error={teamsError} />
+        </div>
+      </div>
     </MainTemplate>
   );
 }
