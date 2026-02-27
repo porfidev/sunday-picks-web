@@ -4,35 +4,17 @@
 
 import './ActiveTeamsPanel.styles.css';
 import { Button, Card, Icon } from '../../atoms';
-import type { CreateTeamResponse } from '../../../features/teams/types.ts';
-
-const apiBaseUrl = import.meta.env.VITE_API_URL;
-
-function getTeamLogoSrc(logoUri: string) {
-  if (!logoUri) {
-    return '';
-  }
-
-  if (logoUri.startsWith('http://') || logoUri.startsWith('https://')) {
-    return logoUri;
-  }
-
-  if (!apiBaseUrl) {
-    return logoUri;
-  }
-
-  const normalizedLogoUri = logoUri.replace(/\\/g, '/');
-  return new URL(normalizedLogoUri, apiBaseUrl).toString();
-}
+import type { GetTeamsResponse } from '../../../features/teams/types.ts';
+import { getTeamLogoSrc } from '../../../features/teams/lib/teamLogo.ts';
 
 type ActiveTeamsPanelProps = {
-  teams: CreateTeamResponse[];
+  teams: GetTeamsResponse[];
   loading: boolean;
   error: string | null;
+  onEditTeam: (team: GetTeamsResponse) => void;
 };
 
-export function ActiveTeamsPanel({ teams, loading, error }: ActiveTeamsPanelProps) {
-  console.log('TEAMS', teams);
+export function ActiveTeamsPanel({ teams, loading, error, onEditTeam }: ActiveTeamsPanelProps) {
   return (
     <section className={'active-teams-panel'}>
       <header className={'active-teams-panel__header'}>
@@ -64,10 +46,16 @@ export function ActiveTeamsPanel({ teams, loading, error }: ActiveTeamsPanelProp
 
                 <div className={'active-teams-panel__item-content'}>
                   <p className={'active-teams-panel__item-name'}>{team.name}</p>
-                  <p className={'active-teams-panel__item-update'}>{`ID: ${team.id}`}</p>
+                  <p
+                    className={'active-teams-panel__item-update'}
+                  >{`Actualizado en: ${new Date(team.updated_at).toLocaleString()}`}</p>
                 </div>
 
-                <Button className={'active-teams-panel__item-button'}>
+                <Button
+                  className={'active-teams-panel__item-button'}
+                  id={`edit-${team.id}`}
+                  onClick={() => onEditTeam(team)}
+                >
                   <Icon name={'edit'} size={20} />
                 </Button>
               </Card>

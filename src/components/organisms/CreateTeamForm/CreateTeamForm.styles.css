@@ -1,0 +1,14 @@
+.create-team-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-team-form__cancel-button {
+  margin-top: 0;
+  background-color: rgb(75, 85, 99);
+}
+
+.create-team-form__cancel-button:hover {
+  background-color: rgb(55, 65, 81);
+}

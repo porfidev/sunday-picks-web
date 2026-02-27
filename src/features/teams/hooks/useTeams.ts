@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { teamService, type TeamService } from '../services/team.service.ts';
-import type { CreateTeamResponse } from '../types.ts';
+import type { GetTeamsResponse } from '../types.ts';
 
 export function useTeams(service: TeamService = teamService) {
-  const [teams, setTeams] = useState<CreateTeamResponse[]>([]);
+  const [teams, setTeams] = useState<GetTeamsResponse[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

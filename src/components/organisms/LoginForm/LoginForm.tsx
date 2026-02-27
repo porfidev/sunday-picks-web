@@ -69,7 +69,7 @@ export function LoginForm({
       />
 
       {error && <ErrorMessage error={`Error: ${error}`} />}
-      <Button disabled={loading}>
+      <Button type={'submit'} disabled={loading}>
         <span className={'button-text'}>{loading ? 'Ingresando...' : 'Ingresar'}</span>
       </Button>
     </form>

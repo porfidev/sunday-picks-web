@@ -1,5 +1,5 @@
 import { AuthTemplate } from '../../templates';
-import './LoginPage.css';
+import './LoginPage.styles.css';
 import { Logo, Card, BrandTitle } from '../../atoms';
 import { LoginForm, type LoginFormValues } from '../../organisms/LoginForm';
 import { useLogin } from '../../../features/auth/hooks/useLogin.ts';
@@ -41,8 +41,6 @@ export function LoginPage() {
 
   const setInputValue = (name: keyof LoginFormValues, value: string | boolean) => {
     const newValues = { ...formValues, [name]: value };
-
-    console.log('value', name, value);
     setValues(mapLoginFormToUseLogin(newValues));
   };
 

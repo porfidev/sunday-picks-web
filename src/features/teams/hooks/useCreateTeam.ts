@@ -31,11 +31,27 @@ export function useCreateTeam(service: TeamService = teamService) {
     }
   };
 
+  const update = async (id: string) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await service.update(id, values);
+      return result;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Error al actualizar el equipo');
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     values,
     setValues,
     loading,
     submit,
+    update,
     error,
   };
 }

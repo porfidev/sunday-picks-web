@@ -5,6 +5,7 @@ import { Button } from '../../atoms';
 type LogoUploaderProps = {
   id?: string;
   disabled?: boolean;
+  initialPreviewUrl?: string | null;
   maxFileSizeMb?: number;
   maxWidth?: number;
   maxHeight?: number;
@@ -67,6 +68,7 @@ async function validateLogoFile(file: File, config: ValidationConfig): Promise<s
 export function LogoUploader({
   id = 'team-logo',
   disabled = false,
+  initialPreviewUrl = null,
   maxFileSizeMb = 2,
   maxWidth = 800,
   maxHeight = 800,
@@ -79,13 +81,23 @@ export function LogoUploader({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
+  const revokePreviewUrl = (url: string | null) => {
+    if (url?.startsWith('blob:')) {
+      URL.revokeObjectURL(url);
+    }
+  };
+
   useEffect(() => {
     return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
+      revokePreviewUrl(previewUrl);
     };
   }, [previewUrl]);
+
+  useEffect(() => {
+    revokePreviewUrl(previewUrl);
+    setPreviewUrl(initialPreviewUrl);
+    setFileName(initialPreviewUrl ? 'Logo actual' : null);
+  }, [initialPreviewUrl]);
 
   const openFileSelector = () => {
     if (disabled || isValidating) {
@@ -95,9 +107,7 @@ export function LogoUploader({
   };
 
   const resetSelection = () => {
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
+    revokePreviewUrl(previewUrl);
     setPreviewUrl(null);
     setFileName(null);
     onSelectFile?.(null);
@@ -124,9 +134,7 @@ export function LogoUploader({
       return;
     }
 
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
+    revokePreviewUrl(previewUrl);
 
     const nextPreviewUrl = URL.createObjectURL(file);
     setPreviewUrl(nextPreviewUrl);
