@@ -1,0 +1,240 @@
+.admin-game-results-page {
+  color: rgb(241 245 249);
+  width: 100%;
+}
+
+.admin-game-results-page__header {
+  margin-bottom: 1.5rem;
+}
+
+.admin-game-results-page__title {
+  font-family: "Lexend", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.02rem;
+  margin: 0;
+}
+
+.admin-game-results-page__subtitle {
+  color: rgb(242 13 13);
+  font-size: 1.25rem;
+  margin: 0.35rem 0 0;
+}
+
+.admin-game-results-page__filters-card,
+.admin-game-results-page__table-card,
+.admin-game-results-page__footer {
+  background-color: rgb(30 41 59 / 0.95);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 16px;
+}
+
+.admin-game-results-page__filters-card {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 1.6rem;
+  padding: 1.2rem 1.5rem;
+}
+
+.admin-game-results-page__filter-label {
+  color: rgb(148 163 184);
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.admin-game-results-page__select {
+  appearance: none;
+  background-color: rgb(8 23 50);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 12px;
+  color: rgb(241 245 249);
+  font-family: "Lexend", sans-serif;
+  font-size: 1.6rem;
+  min-height: 58px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+}
+
+.admin-game-results-page__select:focus {
+  border-color: rgb(242 13 13);
+  outline: none;
+}
+
+.admin-game-results-page__table-card {
+  overflow: auto;
+}
+
+.admin-game-results-page__table {
+  border-collapse: collapse;
+  min-width: 900px;
+  width: 100%;
+}
+
+.admin-game-results-page__table thead th {
+  border-bottom: 1px solid rgb(51 65 85);
+  color: rgb(242 13 13);
+  font-size: 1rem;
+  letter-spacing: 0.08rem;
+  padding: 1.2rem 1rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.admin-game-results-page__table tbody td {
+  border-top: 1px solid rgb(51 65 85);
+  padding: 1rem;
+}
+
+.admin-game-results-page__table tbody tr:first-child td {
+  border-top: 0;
+}
+
+.admin-game-results-page__team-cell {
+  align-items: center;
+  display: flex;
+  gap: 0.9rem;
+}
+
+.admin-game-results-page__team-cell--away {
+  justify-content: flex-end;
+}
+
+.admin-game-results-page__team-icon {
+  align-items: center;
+  background-color: rgb(24 40 66);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 50%;
+  color: rgb(148 163 184);
+  display: inline-flex;
+  height: 46px;
+  justify-content: center;
+  width: 46px;
+}
+
+.admin-game-results-page__team-name {
+  font-size: 1.95rem;
+  font-weight: 700;
+}
+
+.admin-game-results-page__score-input {
+  background-color: rgb(8 23 50);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 12px;
+  color: rgb(241 245 249);
+  font-family: "Lexend", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  min-height: 62px;
+  padding: 0.4rem 0.7rem;
+  text-align: center;
+  width: 110px;
+}
+
+.admin-game-results-page__score-input:focus {
+  border-color: rgb(242 13 13);
+  outline: none;
+}
+
+.admin-game-results-page__vs-col {
+  text-align: center;
+  width: 72px;
+}
+
+.admin-game-results-page__away-team-col {
+  text-align: right;
+}
+
+.admin-game-results-page__vs {
+  color: rgb(100 116 139);
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.admin-game-results-page__empty {
+  color: rgb(148 163 184);
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+
+.admin-game-results-page__footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.6rem;
+  padding: 1.4rem 1.5rem;
+}
+
+.admin-game-results-page__note {
+  color: rgb(100 116 139);
+  font-size: 1.25rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.admin-game-results-page__actions {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.admin-game-results-page__discard-button {
+  background-color: rgb(30 49 80);
+  border: 1px solid rgb(51 65 85);
+  margin-top: 0;
+  min-width: 220px;
+}
+
+.admin-game-results-page__discard-button:hover {
+  background-color: rgb(51 65 85);
+}
+
+.admin-game-results-page__save-button {
+  margin-top: 0;
+  min-width: 220px;
+}
+
+.admin-game-results-page__save-content {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.admin-game-results-page__message {
+  font-size: 1rem;
+  margin: 0.9rem 0 0;
+}
+
+.admin-game-results-page__message--error {
+  color: rgb(248 113 113);
+}
+
+.admin-game-results-page__message--success {
+  color: rgb(74 222 128);
+}
+
+@media (max-width: 900px) {
+  .admin-game-results-page__filters-card {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-game-results-page__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .admin-game-results-page__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .admin-game-results-page__discard-button,
+  .admin-game-results-page__save-button {
+    width: 100%;
+  }
+}
+

@@ -14,6 +14,8 @@ export type RelatedGameEntity = {
 };
 
 export type GetGameResponse = CreateGameResponse & {
+  local_score?: number | null;
+  visit_score?: number | null;
   season_name?: string;
   week_name?: string;
   local_team_name?: string;

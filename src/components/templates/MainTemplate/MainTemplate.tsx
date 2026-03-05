@@ -80,7 +80,7 @@ export function MainTemplate({ children }: MainTemplateProps) {
             className={`main-template__icon-btn ${isMenuOpen ? 'main-template__icon-btn--active' : ''}`}
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
-            <Icon name={'account_circle'} size={28} />
+            <Icon name={'account_circle'} size={28} /> Admin
           </button>
 
           {isMenuOpen && (
@@ -122,6 +122,15 @@ export function MainTemplate({ children }: MainTemplateProps) {
                 >
                   <Icon name={'sports_football'} size={24} />
                   <span>Partidos</span>
+                </Link>
+
+                <Link
+                  to={'/admin/game-results'}
+                  className={`main-template__menu-item ${isActive('/admin/game-results') ? 'main-template__menu-item--active' : ''}`}
+                  onClick={onNavigate}
+                >
+                  <Icon name={'scoreboard'} size={24} />
+                  <span>Resultados</span>
                 </Link>
               </section>
 
