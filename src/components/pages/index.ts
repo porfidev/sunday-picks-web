@@ -5,3 +5,4 @@ export * from './AdminTeamsPage';
 export * from './AdminUsersPage';
 export * from './AdminSettingsPage';
 export * from './AdminSeasonsPage';
+export * from './AdminGamesPage';

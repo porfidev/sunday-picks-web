@@ -9,6 +9,7 @@ import {
   HomePage,
   LoginPage,
   ProtectedRoute,
+  AdminGamesPage,
 } from './components';
 import { AdminWeeksPage } from './components/pages/AdminWeeksPage';
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="settings" element={<AdminSettingsPage />} />
               <Route path="weeks" element={<AdminWeeksPage />} />
               <Route path="seasons" element={<AdminSeasonsPage />} />
+              <Route path="games" element={<AdminGamesPage />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

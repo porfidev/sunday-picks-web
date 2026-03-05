@@ -114,6 +114,15 @@ export function MainTemplate({ children }: MainTemplateProps) {
                   <Icon name={'event'} size={24} />
                   <span>Temporadas</span>
                 </Link>
+
+                <Link
+                  to={'/admin/games'}
+                  className={`main-template__menu-item ${isActive('/admin/games') ? 'main-template__menu-item--active' : ''}`}
+                  onClick={onNavigate}
+                >
+                  <Icon name={'sports_football'} size={24} />
+                  <span>Partidos</span>
+                </Link>
               </section>
 
               <section className={'main-template__menu-section'}>
