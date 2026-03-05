@@ -1,0 +1,16 @@
+.seasons-form {}
+
+.seasons-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.seasons-form__cancel-button {
+  margin-top: 0;
+  background-color: rgb(75, 85, 99);
+}
+
+.seasons-form__cancel-button:hover {
+  background-color: rgb(55, 65, 81);
+}

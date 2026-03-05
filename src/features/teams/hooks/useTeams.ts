@@ -13,6 +13,7 @@ export function useTeams(service: TeamService = teamService) {
 
     try {
       const result = await service.getAll();
+      console.log('RESULT', result.data);
       setTeams(result.data.items);
       return result;
     } catch (e) {

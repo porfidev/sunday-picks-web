@@ -15,9 +15,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [authData, setAuthDataState] = useState<LoginResponse | null>(() => getAuthData());
 
   const setAuthData = useCallback(
-    (data: LoginResponse) => {
+    (data: LoginResponse, options?: { rememberSession?: boolean }) => {
       setAuthDataState(data);
-      setStoredAuthData(data);
+      setStoredAuthData(data, options);
     },
     [],
   );

@@ -1,0 +1,20 @@
+.admin-weeks-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-weeks-page__card {
+  margin-top: 40px;
+  align-self: center;
+}
+
+.admin-weeks-page__card-inner{
+  min-width: 600px;
+  background-color: rgb(30 41 59);
+}
+
+.admin-weeks-page__weeks-list {
+  margin-top: 40px;
+  min-width: 600px;
+  align-self: center;
+}

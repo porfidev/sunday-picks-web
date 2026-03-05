@@ -1,0 +1,115 @@
+.active-weeks-panel {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+
+.active-weeks-panel__header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.active-weeks-panel__title {
+  color: rgb(148, 163, 184);
+  font-family: "Lexend", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.active-weeks-panel__title-line {
+  height: 1px;
+  margin-left: 1rem;
+  background-color: rgb(51,65,85);
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.active-weeks-panel__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.active-weeks-panel__status {
+  color: rgb(148, 163, 184);
+  font-size: 0.875rem;
+  margin: 1rem 0 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.active-weeks-panel__list-item {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.active-weeks-panel__card {
+  align-self: center;
+  margin-top: 1rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.active-weeks-panel__card-inner {
+  align-items: center;
+  background-color: rgb(30 41 59);
+  display: flex;
+  flex-direction: row;
+  min-width: 100%;
+  padding: 1.2rem 2.5rem;
+}
+
+.active-weeks-panel__item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.active-weeks-panel__item-name {
+  color: rgb(241, 245, 249);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.active-weeks-panel__item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.active-weeks-panel__item-button {
+  align-items: center;
+  background-color: rgb(30 41 59);
+  border-radius: 8px;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  margin: 0;
+  width: 2.5rem;
+}
+
+.active-weeks-panel__item-button--edit {
+  border: 1px solid rgb(51, 65, 85);
+  color: rgb(148, 163, 184);
+}
+
+.active-weeks-panel__item-button--edit:hover {
+  color: rgb(255, 255, 255);
+}
+
+.active-weeks-panel__item-button--delete {
+  border: 1px solid rgb(127, 29, 29);
+  color: rgb(248, 113, 113);
+}
+
+.active-weeks-panel__item-button--delete:hover {
+  background-color: rgb(127, 29, 29);
+  color: rgb(255, 255, 255);
+}

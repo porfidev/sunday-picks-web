@@ -32,7 +32,7 @@ export function LoginPage() {
     e.preventDefault();
     const loginResult = await submit();
     if (loginResult?.data) {
-      setAuthData(loginResult.data);
+      setAuthData(loginResult.data, { rememberSession: domainValues.remember });
       navigate('/home', { replace: true });
     }
   };

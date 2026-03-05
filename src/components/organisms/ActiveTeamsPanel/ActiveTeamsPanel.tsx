@@ -14,7 +14,12 @@ type ActiveTeamsPanelProps = {
   onEditTeam: (team: GetTeamsResponse) => void;
 };
 
-export function ActiveTeamsPanel({ teams, loading, error, onEditTeam }: ActiveTeamsPanelProps) {
+export function ActiveTeamsPanel({
+  teams = [],
+  loading,
+  error,
+  onEditTeam,
+}: ActiveTeamsPanelProps) {
   return (
     <section className={'active-teams-panel'}>
       <header className={'active-teams-panel__header'}>

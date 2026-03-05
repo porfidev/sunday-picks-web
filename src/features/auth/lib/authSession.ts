@@ -1,6 +1,11 @@
 import type { LoginResponse } from '../types.ts';
 
 const AUTH_STORAGE_KEY = 'auth_data';
+const REMEMBER_SESSION_STORAGE_KEY = 'remember_session';
+
+type SetAuthDataOptions = {
+  rememberSession?: boolean;
+};
 
 type RefreshResponse = Partial<LoginResponse> & {
   access_token: string;
@@ -11,12 +16,21 @@ export function getAuthData(): LoginResponse | null {
   return raw ? (JSON.parse(raw) as LoginResponse) : null;
 }
 
-export function setAuthData(data: LoginResponse) {
-  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(data));
+function getRememberSessionFlag() {
+  return localStorage.getItem(REMEMBER_SESSION_STORAGE_KEY) === 'true';
+}
+
+export function setAuthData(data: LoginResponse, options: SetAuthDataOptions = {}) {
+  const rememberSession = options.rememberSession ?? getRememberSessionFlag();
+  const dataToStore: LoginResponse = rememberSession ? data : { ...data, refresh_token: '' };
+
+  localStorage.setItem(REMEMBER_SESSION_STORAGE_KEY, rememberSession.toString());
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(dataToStore));
 }
 
 export function clearAuthData() {
   localStorage.removeItem(AUTH_STORAGE_KEY);
+  localStorage.removeItem(REMEMBER_SESSION_STORAGE_KEY);
 }
 
 export function getAccessToken() {
@@ -24,7 +38,12 @@ export function getAccessToken() {
 }
 
 export function getRefreshToken() {
-  return getAuthData()?.refresh_token ?? null;
+  if (!getRememberSessionFlag()) {
+    return null;
+  }
+
+  const refreshToken = getAuthData()?.refresh_token;
+  return refreshToken || null;
 }
 
 export function mergeRefreshAuthData(data: RefreshResponse): LoginResponse | null {
@@ -45,4 +64,3 @@ export function mergeRefreshAuthData(data: RefreshResponse): LoginResponse | nul
 
   return nextAuthData;
 }
-

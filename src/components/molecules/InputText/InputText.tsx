@@ -72,7 +72,7 @@ export function InputText({
           {...props}
         />
         {type === 'password' && (
-          <button className={'input-text__toggle'} onClick={onPressShowPassword}>
+          <button type={'button'} className={'input-text__toggle'} onClick={onPressShowPassword}>
             {shouldShow ? <InputIcon type={'eye'} /> : <InputIcon type={'eye-closed'} />}
           </button>
         )}
