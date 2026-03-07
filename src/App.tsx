@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import {
-  AboutPage,
   AdminSeasonsPage,
   AdminTeamsPage,
   AdminSettingsPage,
@@ -22,7 +21,6 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
             <Route path="/admin" element={<AdminRoute />}>
               <Route path="teams" element={<AdminTeamsPage />} />
               <Route path="users" element={<AdminUsersPage />} />

@@ -1,0 +1,69 @@
+.user-menu {
+  background-color: rgb(30 41 59);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 1.2rem;
+  box-shadow: 0 20px 40px rgb(2 6 23 / 45%);
+  min-width: 240px;
+  overflow: hidden;
+  position: fixed;
+  z-index: 40;
+}
+
+.user-menu__menu-section {
+  border-top: 1px solid rgb(51 65 85);
+  display: flex;
+  flex-direction: column;
+  padding: 0.35rem 0;
+}
+
+.user-menu__menu-section:first-child {
+  border-top: 0;
+}
+
+.user-menu__menu-title {
+  color: rgb(148 163 184);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0;
+  padding: 1rem 1.5rem 0.65rem;
+  text-transform: uppercase;
+}
+
+.user-menu__menu-item {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: rgb(226 232 240);
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 600;
+  gap: 0.85rem;
+  line-height: 1.2;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+  width: 100%;
+}
+
+.user-menu__menu-item .icon {
+  color: rgb(242 13 13);
+}
+
+.user-menu__menu-item--active,
+.user-menu__menu-item:hover {
+  background-color: rgb(36 50 70);
+  color: rgb(255 255 255);
+}
+
+.user-menu__menu-section:last-child .user-menu__menu-item .icon {
+  color: rgb(148 163 184);
+}
+
+.user-menu__menu-section:last-child .user-menu__menu-item {
+  color: rgb(148 163 184);
+}
