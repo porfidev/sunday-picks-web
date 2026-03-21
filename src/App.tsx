@@ -10,8 +10,9 @@ import {
   ProtectedRoute,
   AdminGamesPage,
   AdminGameResultsPage,
+  AdminWeeksPage,
 } from './components';
-import { AdminWeeksPage } from './components/pages/AdminWeeksPage';
+import { ChangePasswordPage } from './components/pages/ChangePasswordPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/home" element={<HomePage />} />
+            <Route path="/change-password" element={<ChangePasswordPage />} />
             <Route path="/admin" element={<AdminRoute />}>
               <Route path="teams" element={<AdminTeamsPage />} />
               <Route path="users" element={<AdminUsersPage />} />

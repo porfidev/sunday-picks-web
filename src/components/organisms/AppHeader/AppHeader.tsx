@@ -5,7 +5,7 @@
 import './AppHeader.styles.css';
 import { BrandTitle, Icon, Logo } from '../../atoms';
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AdminMenu } from '../AdminMenu';
 import { useAuth } from '../../../features/auth/hooks/useAuth.ts';
 import { useClickOutside } from '../../../hooks/useOutsideClick.ts';
@@ -34,26 +34,33 @@ export function AppHeader() {
     admin: adminMenuRef,
     user: userMenuRef,
   };
-  const buttonRefs = {
-    admin: adminButtonRef,
-    user: userButtonRef,
-  };
+  const buttonRefs = useMemo(
+    () => ({
+      admin: adminButtonRef,
+      user: userButtonRef,
+    }),
+    [],
+  );
+
   const activeMenuRef = activeMenu ? menuRefs[activeMenu] : adminMenuRef;
 
-  const updateMenuPosition = (menu: MenuKey) => {
-    const button = buttonRefs[menu].current;
-    if (!button) return;
+  const updateMenuPosition = useCallback(
+    (menu: MenuKey) => {
+      const button = buttonRefs[menu].current;
+      if (!button) return;
 
-    const buttonRect = button.getBoundingClientRect();
+      const buttonRect = button.getBoundingClientRect();
 
-    setMenuPositions((previous) => ({
-      ...previous,
-      [menu]: {
-        top: buttonRect.bottom + 10,
-        left: buttonRect.left,
-      },
-    }));
-  };
+      setMenuPositions((previous) => ({
+        ...previous,
+        [menu]: {
+          top: buttonRect.bottom + 10,
+          left: buttonRect.left,
+        },
+      }));
+    },
+    [buttonRefs],
+  );
 
   const onToggleMenu = (menu: MenuKey) => {
     if (activeMenu === menu) {

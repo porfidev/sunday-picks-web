@@ -105,6 +105,27 @@ export function AdminMenu({ onNavigateAction, top, left }: AdminMenuProps) {
       </section>
 
       <section className={'admin-menu__menu-section'}>
+        <p className={'admin-menu__menu-title'}>Pronosticos</p>
+        <Link
+          to={'/admin/week-picks'}
+          className={`admin-menu__menu-item ${isActive('/admin/week-picks') ? 'admin-menu__menu-item--active' : ''}`}
+          onClick={onNavigate}
+        >
+          <Icon name={'scoreboard'} size={20} />
+          <span>Tabla semanal</span>
+        </Link>
+
+        <Link
+          to={'/admin/points'}
+          className={`admin-menu__menu-item ${isActive('/admin/points') ? 'admin-menu__menu-item--active' : ''}`}
+          onClick={onNavigate}
+        >
+          <Icon name={'scoreboard'} size={20} />
+          <span>Tabla de puntos</span>
+        </Link>
+      </section>
+
+      <section className={'admin-menu__menu-section'}>
         <p className={'admin-menu__menu-title'}>Usuarios</p>
 
         <Link

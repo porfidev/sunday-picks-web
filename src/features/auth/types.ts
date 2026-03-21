@@ -11,3 +11,7 @@ export type LoginResponse = {
     name: string;
   };
 };
+
+export type ChangePasswordResponse = {
+  message: string;
+};

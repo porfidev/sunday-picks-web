@@ -10,7 +10,7 @@ export type LoginRequestValues = {
 export function useLogin(service: AuthService = authService) {
   const [values, setValues] = useState<LoginRequestValues>({
     email: 'admin@tudominio.com',
-    password: 'abcd1234*',
+    password: 'newAbcd1234*',
     remember: false,
   });
 
