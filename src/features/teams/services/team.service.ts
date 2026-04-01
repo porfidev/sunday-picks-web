@@ -70,7 +70,7 @@ export const teamService: TeamService = {
         formData.append('logo', payload.logo);
       }
 
-      const { data } = await http.put<CreateTeamResponse>(`/teams/${id}`, formData, {
+      const { data } = await http.post<CreateTeamResponse>(`/teams/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

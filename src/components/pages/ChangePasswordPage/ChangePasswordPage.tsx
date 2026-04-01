@@ -8,15 +8,21 @@ import { Card, Icon } from '../../atoms';
 import { SectionTitle } from '../../atoms/SectionTitle';
 import { LineSpacer } from '../../atoms/LineSpacer';
 import { CardTitle } from '../../atoms/CardTitle';
-import { ChangePasswordForm, type ChangePasswordFormValues } from '../../organisms/ChangePasswordForm';
+import {
+  ChangePasswordForm,
+  type ChangePasswordFormValues,
+} from '../../organisms/ChangePasswordForm';
 import { useChangePassword } from '../../../features/auth/hooks/useChangePassword.ts';
 import { type SubmitEventHandler, useState } from 'react';
 import { useAuth } from '../../../features/auth/hooks/useAuth.ts';
+import { clearAuthData } from '../../../features/auth/lib/authSession.ts';
+import { useNavigate } from 'react-router-dom';
 
 export function ChangePasswordPage() {
   const { user } = useAuth();
   const { values, setValues, loading, submit, error, resetValues } = useChangePassword();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const setInputValue = (name: keyof ChangePasswordFormValues, value: string | boolean) => {
     setSuccessMessage(null);
@@ -35,6 +41,11 @@ export function ChangePasswordPage() {
     if (result?.data) {
       resetValues();
       setSuccessMessage(result.data.message || 'La contraseña fue actualizada correctamente');
+
+      setTimeout(() => {
+        clearAuthData();
+        navigate('/', { replace: true });
+      }, 2000);
     }
   };
 
@@ -44,7 +55,10 @@ export function ChangePasswordPage() {
         <SectionTitle>Cambio de contraseña</SectionTitle>
         <LineSpacer />
 
-        <Card className={'change-password-page__card'} classNameInner={'change-password-page__card-inner'}>
+        <Card
+          className={'change-password-page__card'}
+          classNameInner={'change-password-page__card-inner'}
+        >
           <CardTitle
             icon={<Icon name={'lock'} color={'rgb(242, 13, 13)'} size={24} />}
             iconPosition="left"
