@@ -1,6 +1,6 @@
 import './GamesForm.styles.css';
-import type { SubmitEventHandler } from 'react';
-import { Button, Icon, Label } from '../../atoms';
+import type { ChangeEvent, SubmitEventHandler } from 'react';
+import { Button, Label } from '../../atoms';
 import type { GetSeasonResponse } from '../../../features/seasons/types.ts';
 import type { GetWeekResponse } from '../../../features/weeks/types.ts';
 import type { GetTeamsResponse } from '../../../features/teams/types.ts';
@@ -8,6 +8,7 @@ import { ErrorMessage } from '../../atoms/ErrorMessage';
 import DatePicker from 'react-datepicker';
 import { format, isValid, parse } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+import { InputSelect } from '../../molecules/InputSelect';
 
 export type CreateGameValues = {
   season_id: string;
@@ -25,53 +26,9 @@ type GamesFormProps = {
   error?: string | null;
   loading: boolean;
   loadingCatalogs?: boolean;
-  onInputChange: (name: keyof CreateGameValues, value: string) => void;
+  onInputChange: (value: { name: keyof CreateGameValues; value: string }) => void;
   onSubmit: SubmitEventHandler<HTMLFormElement>;
 };
-
-type OptionFieldProps = {
-  id: keyof CreateGameValues;
-  label: string;
-  value: string;
-  disabled?: boolean;
-  placeholder: string;
-  options: Array<{ id: string; label: string }>;
-  onInputChange: (name: keyof CreateGameValues, value: string) => void;
-};
-
-function OptionField({
-  id,
-  label,
-  value,
-  disabled,
-  placeholder,
-  options,
-  onInputChange,
-}: OptionFieldProps) {
-  return (
-    <div className={'games-form__field'}>
-      <Label htmlFor={id} required={true}>
-        {label}
-      </Label>
-      <select
-        id={id}
-        name={id}
-        className={'games-form__select'}
-        value={value}
-        required={true}
-        disabled={disabled}
-        onChange={(e) => onInputChange(e.target.name as keyof CreateGameValues, e.target.value)}
-      >
-        <option value={''}>{placeholder}</option>
-        {options.map((option) => (
-          <option key={option.id} value={option.id}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-}
 
 function parseGameDatetime(value: string) {
   const trimmed = value.trim();
@@ -106,28 +63,43 @@ export function GamesForm({
   const isDisabled = loading || loadingCatalogs;
   const selectedGameDatetime = parseGameDatetime(values.game_datetime);
 
+  const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    console.log(event.target.id);
+    if (onInputChange) {
+      onInputChange({
+        name: event.target.id as keyof CreateGameValues,
+        value: String(event.target.value),
+      });
+    }
+  };
   return (
     <form className={'games-form'} onSubmit={onSubmit}>
       <input type={'hidden'} id={'is_played'} name={'is_played'} value={'0'} />
       <div className={'games-form__grid'}>
-        <OptionField
+        <InputSelect<string>
           id={'season_id'}
           label={'Temporada'}
           value={values.season_id}
           disabled={isDisabled}
-          placeholder={'Selecciona temporada'}
-          options={seasons.map((season) => ({ id: season.id, label: season.name }))}
-          onInputChange={onInputChange}
+          placeholder={'Selecciona una temporada'}
+          options={seasons.map((season) => ({
+            key: season.id,
+            value: season.id,
+            label: season.name,
+          }))}
+          onChange={handleSelect}
+          required={true}
         />
 
-        <OptionField
+        <InputSelect<string>
           id={'week_id'}
           label={'Semana'}
           value={values.week_id}
           disabled={isDisabled}
-          placeholder={'Selecciona semana'}
-          options={weeks.map((week) => ({ id: week.id, label: week.name }))}
-          onInputChange={onInputChange}
+          placeholder={'Selecciona una semana'}
+          options={weeks.map((week) => ({ key: week.id, value: week.id, label: week.name }))}
+          onChange={handleSelect}
+          required={true}
         />
 
         <div className={'games-form__field'}>
@@ -139,11 +111,14 @@ export function GamesForm({
             selected={selectedGameDatetime}
             onChange={(date: Date | null) => {
               if (date instanceof Date) {
-                onInputChange('game_datetime', format(date, 'yyyy-MM-dd HH:mm:ss'));
+                onInputChange({
+                  name: 'game_datetime',
+                  value: format(date, 'yyyy-MM-dd HH:mm:ss'),
+                });
                 return;
               }
 
-              onInputChange('game_datetime', '');
+              onInputChange({ name: 'game_datetime', value: '' });
             }}
             showTimeSelect={true}
             timeIntervals={5}
@@ -157,33 +132,35 @@ export function GamesForm({
             required={true}
             disabled={isDisabled}
             autoComplete={'off'}
+            minDate={new Date()}
           />
         </div>
 
-        <OptionField
+        <InputSelect
           id={'local_team_id'}
           label={'Equipo local'}
           value={values.local_team_id}
           disabled={isDisabled}
-          placeholder={'Selecciona equipo local'}
-          options={teams.map((team) => ({ id: team.id, label: team.name }))}
-          onInputChange={onInputChange}
+          placeholder={'Selecciona un equipo local'}
+          options={teams.map((team) => ({ key: team.id, value: team.id, label: team.name }))}
+          onChange={handleSelect}
+          required={true}
         />
 
-        <OptionField
+        <InputSelect
           id={'visit_team_id'}
           label={'Equipo visitante'}
           value={values.visit_team_id}
           disabled={isDisabled}
-          placeholder={'Selecciona equipo visitante'}
-          options={teams.map((team) => ({ id: team.id, label: team.name }))}
-          onInputChange={onInputChange}
+          placeholder={'Selecciona un equipo visitante'}
+          options={teams.map((team) => ({ key: team.id, value: team.id, label: team.name }))}
+          onChange={handleSelect}
+          required={true}
         />
 
         <div className={'games-form__submit-wrapper'}>
-          <Button type={'submit'} className={'games-form__submit'} disabled={isDisabled}>
-            <span className={'games-form__submit-content'}>
-              <Icon name={'save'} size={20} />
+          <Button type={'submit'} disabled={isDisabled}>
+            <span className={'games-form__button-text'}>
               <span className={'button-text'}>{loading ? 'Guardando' : 'Guardar partido'}</span>
             </span>
           </Button>

@@ -58,7 +58,7 @@ export function CreateTeamForm({
       {error && <ErrorMessage error={`Error: ${error}`} />}
       <div className={'create-team-form__actions'}>
         <Button type={'submit'} disabled={loading}>
-          <span className={'button-text'}>
+          <span className={'create-team-form__button-text'}>
             {loading
               ? isEditing
                 ? 'Guardando'

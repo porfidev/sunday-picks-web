@@ -20,8 +20,8 @@ export function AdminGamesPage() {
   const { teams, loading: loadingTeams, error: teamsError } = useTeams();
   const { games, loading: loadingGames, error: gamesError, refetch: refetchGames } = useGames();
 
-  const setInputValue = (name: keyof CreateGameValues, value: string) => {
-    setValues({ ...values, [name]: value });
+  const setInputValue = (updateValue: { name: keyof CreateGameValues; value: string }) => {
+    setValues({ ...values, [updateValue.name]: updateValue.value });
   };
 
   const onSubmit: SubmitEventHandler<HTMLFormElement> = async (e) => {
@@ -48,7 +48,7 @@ export function AdminGamesPage() {
 
         <Card className={'admin-games-page__card'} classNameInner={'admin-games-page__card-inner'}>
           <CardTitle
-            icon={<Icon name={'sports_football'} color={'rgb(242, 13, 13)'} size={24} />}
+            icon={<Icon name={'add_circle'} color={'rgb(242, 13, 13)'} size={24} />}
             iconPosition="left"
           >
             Alta de partidos
