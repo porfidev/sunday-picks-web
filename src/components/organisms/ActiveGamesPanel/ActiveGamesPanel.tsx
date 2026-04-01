@@ -1,10 +1,11 @@
 import './ActiveGamesPanel.styles.css';
 import { type ChangeEvent, useMemo, useState } from 'react';
-import { Icon } from '../../atoms';
+import { Button, Icon } from '../../atoms';
 import type { GetGameResponse } from '../../../features/games/types.ts';
 import type { GetSeasonResponse } from '../../../features/seasons/types.ts';
 import type { GetWeekResponse } from '../../../features/weeks/types.ts';
 import type { GetTeamsResponse } from '../../../features/teams/types.ts';
+import { InputSelect } from '../../molecules/InputSelect';
 
 type ActiveGamesPanelProps = {
   games: GetGameResponse[];
@@ -42,12 +43,12 @@ function mapGameDate(gameDatetime: string) {
   }
 
   return {
-    dateLabel: date.toLocaleDateString('en-US', {
+    dateLabel: date.toLocaleDateString(undefined, {
       month: 'short',
       day: '2-digit',
       year: 'numeric',
     }),
-    timeLabel: date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+    timeLabel: date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }),
   };
 }
 
@@ -67,8 +68,34 @@ export function ActiveGamesPanel({
   });
   const [page, setPage] = useState(1);
 
-  const teamNames = useMemo(() => {
-    return new Map(teams.map((team) => [String(team.id), team.name]));
+  const availableSeasons = useMemo(() => {
+    return seasons.map((season) => {
+      return {
+        key: season.id,
+        value: season.id,
+        label: season.name,
+      };
+    });
+  }, [seasons]);
+
+  const availableWeeks = useMemo(() => {
+    return weeks.map((week) => {
+      return {
+        key: week.id,
+        value: week.id,
+        label: week.name,
+      };
+    });
+  }, [weeks]);
+
+  const availableTeams = useMemo(() => {
+    return teams.map((team) => {
+      return {
+        key: team.id,
+        value: team.id,
+        label: team.name,
+      };
+    });
   }, [teams]);
 
   const seasonNames = useMemo(() => {
@@ -78,6 +105,10 @@ export function ActiveGamesPanel({
   const weekNames = useMemo(() => {
     return new Map(weeks.map((week) => [String(week.id), week.name]));
   }, [weeks]);
+
+  const teamNames = useMemo(() => {
+    return new Map(teams.map((team) => [String(team.id), team.name]));
+  }, [teams]);
 
   const filteredGames = useMemo(() => {
     return games.filter((game) => {
@@ -99,11 +130,7 @@ export function ActiveGamesPanel({
         return false;
       }
 
-      if (filters.teamId && filters.teamId !== localTeamId && filters.teamId !== visitTeamId) {
-        return false;
-      }
-
-      return true;
+      return !(filters.teamId && filters.teamId !== localTeamId && filters.teamId !== visitTeamId);
     });
   }, [filters, games]);
 
@@ -129,55 +156,43 @@ export function ActiveGamesPanel({
   return (
     <section className={'active-games-panel'}>
       <header className={'active-games-panel__header'}>
-        <h2 className={'active-games-panel__title'}>Active Matches</h2>
+        <h2 className={'active-games-panel__title'}>Partidos registrados</h2>
         <span
           className={'active-games-panel__counter'}
-        >{`${filteredGames.length} Total Matches`}</span>
+        >{`${filteredGames.length} partidos en total`}</span>
       </header>
 
       <div className={'active-games-panel__filters'}>
-        <select
-          className={'active-games-panel__filter-select'}
+        <InputSelect<string>
+          id="season_id"
+          label={''}
+          options={availableSeasons}
           value={filters.seasonId}
+          placeholder={'Todas las temporadas'}
           onChange={onSelectFilter('seasonId')}
-        >
-          <option value={''}>All Seasons</option>
-          {seasons.map((season) => (
-            <option key={season.id} value={season.id}>
-              {season.name}
-            </option>
-          ))}
-        </select>
+        />
 
-        <select
-          className={'active-games-panel__filter-select'}
+        <InputSelect<string>
+          id={'week_id'}
+          label={''}
+          options={availableWeeks}
           value={filters.weekId}
+          placeholder={'Todas las semanas'}
           onChange={onSelectFilter('weekId')}
-        >
-          <option value={''}>All Weeks</option>
-          {weeks.map((week) => (
-            <option key={week.id} value={week.id}>
-              {week.name}
-            </option>
-          ))}
-        </select>
+        />
 
-        <select
-          className={'active-games-panel__filter-select'}
+        <InputSelect<string>
+          id={'team_id'}
+          label={''}
+          options={availableTeams}
           value={filters.teamId}
+          placeholder={'Todas los equipo'}
           onChange={onSelectFilter('teamId')}
-        >
-          <option value={''}>All Teams</option>
-          {teams.map((team) => (
-            <option key={team.id} value={team.id}>
-              {team.name}
-            </option>
-          ))}
-        </select>
+        />
 
         <label className={'active-games-panel__checkbox'}>
           <input type={'checkbox'} checked={filters.activeOnly} onChange={onToggleActiveOnly} />
-          <span>Active Only</span>
+          <span>Ver los que se juegan</span>
         </label>
       </div>
 
@@ -185,13 +200,10 @@ export function ActiveGamesPanel({
         <table className={'active-games-panel__table'}>
           <thead>
             <tr>
-              <th className={'active-games-panel__col-check'}>
-                <input type={'checkbox'} aria-label={'Seleccionar todos'} disabled={true} />
-              </th>
-              <th>Teams (Home vs Away)</th>
-              <th>Date / Time</th>
-              <th>Status</th>
-              <th className={'active-games-panel__col-actions'}>Actions</th>
+              <th>Equipos (Local vs Visitante)</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th className={'active-games-panel__col-actions'}></th>
             </tr>
           </thead>
           <tbody>
@@ -249,9 +261,6 @@ export function ActiveGamesPanel({
 
                 return (
                   <tr key={game.id}>
-                    <td className={'active-games-panel__col-check'}>
-                      <input type={'checkbox'} aria-label={`Seleccionar partido ${game.id}`} />
-                    </td>
                     <td>
                       <p className={'active-games-panel__teams'}>
                         <strong>{localTeamName}</strong>
@@ -269,17 +278,17 @@ export function ActiveGamesPanel({
                         className={`active-games-panel__status-pill ${played ? 'active-games-panel__status-pill--confirmed' : 'active-games-panel__status-pill--pending'}`}
                       >
                         <span className={'active-games-panel__status-dot'} />
-                        {played ? 'Confirmed' : 'Pending'}
+                        {played ? 'Confirmado' : 'Pendiente'}
                       </span>
                     </td>
                     <td className={'active-games-panel__col-actions'}>
-                      <button
+                      <Button
                         type={'button'}
                         className={'active-games-panel__edit-btn'}
                         aria-label={`Editar partido ${game.id}`}
                       >
-                        <Icon name={'edit'} size={22} />
-                      </button>
+                        <Icon name={'edit'} size={20} />
+                      </Button>
                     </td>
                   </tr>
                 );

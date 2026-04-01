@@ -26,9 +26,7 @@ export function OptionField<T>({
 }: OptionFieldProps<T>) {
   return (
     <select id={id} name={id} className={'option-field'} required={required} {...props}>
-      <option value={''} disabled={true}>
-        {placeholder}
-      </option>
+      <option value={''}>{placeholder}</option>
       {options.map((option) => (
         <option key={option.key} value={String(option.value)}>
           {option.label}

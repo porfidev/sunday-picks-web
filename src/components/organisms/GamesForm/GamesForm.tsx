@@ -64,7 +64,6 @@ export function GamesForm({
   const selectedGameDatetime = parseGameDatetime(values.game_datetime);
 
   const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.id);
     if (onInputChange) {
       onInputChange({
         name: event.target.id as keyof CreateGameValues,
