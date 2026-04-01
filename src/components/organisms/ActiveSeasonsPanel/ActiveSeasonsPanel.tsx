@@ -46,11 +46,16 @@ export function ActiveSeasonsPanel({
               >
                 <div className={'active-seasons-panel__item-content'}>
                   <p className={'active-seasons-panel__item-name'}>{season.name}</p>
+                  <p className={'active-seasons-panel__item-update'}>
+                    {`Actualizado en: ${new Date(season.updated_at).toLocaleString()}`}
+                  </p>
                 </div>
 
                 <div className={'active-seasons-panel__item-actions'}>
                   <Button
-                    className={'active-seasons-panel__item-button active-seasons-panel__item-button--edit'}
+                    className={
+                      'active-seasons-panel__item-button active-seasons-panel__item-button--edit'
+                    }
                     disabled={isDeleting}
                     id={`edit-${season.id}`}
                     onClick={() => onEditSeason(season)}
@@ -59,7 +64,9 @@ export function ActiveSeasonsPanel({
                   </Button>
 
                   <Button
-                    className={'active-seasons-panel__item-button active-seasons-panel__item-button--delete'}
+                    className={
+                      'active-seasons-panel__item-button active-seasons-panel__item-button--delete'
+                    }
                     disabled={isDeleting}
                     id={`delete-${season.id}`}
                     onClick={() => onDeleteSeason(season)}

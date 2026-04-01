@@ -44,11 +44,15 @@ export function ActiveWeeksPanel({
               >
                 <div className={'active-weeks-panel__item-content'}>
                   <p className={'active-weeks-panel__item-name'}>{week.name}</p>
+                  <p
+                    className={'active-weeks-panel__item-update'}
+                  >{`Actualizado en: ${new Date(week.updated_at).toLocaleString()}`}</p>
                 </div>
-
                 <div className={'active-weeks-panel__item-actions'}>
                   <Button
-                    className={'active-weeks-panel__item-button active-weeks-panel__item-button--edit'}
+                    className={
+                      'active-weeks-panel__item-button active-weeks-panel__item-button--edit'
+                    }
                     disabled={isDeleting}
                     id={`edit-${week.id}`}
                     onClick={() => onEditWeek(week)}
@@ -57,7 +61,9 @@ export function ActiveWeeksPanel({
                   </Button>
 
                   <Button
-                    className={'active-weeks-panel__item-button active-weeks-panel__item-button--delete'}
+                    className={
+                      'active-weeks-panel__item-button active-weeks-panel__item-button--delete'
+                    }
                     disabled={isDeleting}
                     id={`delete-${week.id}`}
                     onClick={() => onDeleteWeek(week)}
